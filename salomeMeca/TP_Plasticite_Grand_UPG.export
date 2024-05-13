@@ -1,0 +1,10 @@
+P time_limit 1000
+P memory_limit 6024
+P ncpus 1
+P mpi_nbcpu 1
+P mpi_nbnoeud 1
+
+F comm TP_Plasticite_Grand_UPG.comm D 1
+F mmed ./mesh/sphere_H20.med D 20
+F rmed TP_Plasticite_Grand_UPG_result.med R 80
+F mess TP_Plasticite_Grand_UPG_mess.txt R 6

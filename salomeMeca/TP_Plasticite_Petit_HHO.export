@@ -1,0 +1,10 @@
+P time_limit 500
+P memory_limit 6024
+P ncpus 4
+P mpi_nbcpu 1
+P mpi_nbnoeud 1
+
+F comm TP_Plasticite_Petit_HHO.comm D 1
+F mmed ./mesh/sphere_T4.med D 20
+F rmed TP_Plasticite_Petit_HHO_result.med R 80
+F mess TP_Plasticite_Petit_HHO_mess.txt R 6
