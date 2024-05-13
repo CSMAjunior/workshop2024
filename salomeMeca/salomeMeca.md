@@ -7,11 +7,11 @@ Il y a donc deux étapes principales
 - Installer singularity
 - Installer le container contenant salome_meca
 
-The official website for code_aster and salome_meca (https://code-aster.org/V2/spip.php?rubrique1) and for code_saturne (https://www.code-saturne.org/cms/web/).
-The installation procedure is based on the official one https://gitlab.com/codeaster-opensource-documentation/opensource-installation-development
+Le site officiel pour code_aster est salome_meca est https://code-aster.org/V2/spip.php?rubrique1.
+La procédure d'installation est basée sur https://gitlab.com/codeaster-opensource-documentation/opensource-installation-development
 
 Il y a deux containers disponibles (au choix):
-- une version qui contient une version MPI de salome_meca et de code_saturne
+- une version qui contient une version MPI de salome_meca et de code_aster (16.3)
 - une version officielle qui contient uniquement salome_meca en version séquentielle
 
 Une troisième version de salome_meca, utilisable uniquement sur Windows pourra être founie sur place (sur clef USB). Elle ne nécessite
@@ -21,18 +21,19 @@ aucune installation préalable.
 
 Le conteneur fourni est un conteneur Singularity. Il est compatible avec Singularity 3.6.4 et plus.
 
-Tout d'abord, essayez d'installer Singularity à partir de votre gestionnaire de paquets.
+Tout d'abord, essayez d'installer Singularity à partir de votre gestionnaire de paquets (https://packages.debian.org/source/sid/singularity-container sous debian/ubuntu récent).
 Sinon, il faut le compiler à partir de zéro.
 
-Voir la procédure indiquée sur le site officiel https://docs.sylabs.io/guides/3.0/user-guide/installation.html. 
-- Linux : il existe un paquetage officiel ou non https://docs.sylabs.io/guides/3.0/user-guide/installation.html#install-on-linux. 
-- Windows : il est préférable d'utiliser WSL2 https://gitlab.com/codeaster-opensource-documentation/opensource-installation-development/-/blob/main/install/installation_windows.md ou une machine virtuelle https://docs.sylabs.io/guides/3.0/user-guide/installation.html#install-on-windows-or-mac.
-- Mac-os : il faut utiliser une machine virtuelle https://docs.sylabs.io/guides/3.0/user-guide/installation.html#install-on-windows-or-mac
+Voir la procédure indiquée sur le site officiel https://docs.sylabs.io/guides/4.1/admin-guide/installation.html. 
+
+- Linux : il existe un paquetage officiel ou non https://docs.sylabs.io/guides/4.1/admin-guide/installation.html#installation-on-linux. 
+- Windows : il est préférable d'utiliser WSL2 https://gitlab.com/codeaster-opensource-documentation/opensource-installation-development/-/blob/main/install/installation_windows.md ou une machine virtuelle https://docs.sylabs.io/guides/4.1/admin-guide/installation.html#installation-on-windows-or-mac.
+- Mac-os : il faut utiliser une machine virtuelle https://docs.sylabs.io/guides/4.1/admin-guide/installation.html#installation-on-windows-or-mac.
 
 ## Créer le répertoire d'installation
 
 Cette documentation prend pour acquis que le répertoire d'installation du conteneur salome_meca se trouve dans le répertoire 
-d'un utilisateur, tel que `$HOME/containers`. Le nom de ce répertoire peut bien sûr être être modifié, mais il faut adapter les lignes de commande en conséquence.
+d'un utilisateur, tel que `$HOME/containers`. Le nom de ce répertoire peut bien sûr être modifié, mais il faut adapter les lignes de commande en conséquence.
 
 Tout d'abord, créons le répertoire spécifié :
 
@@ -45,16 +46,16 @@ Sauf indication contraire, toutes les opérations ultérieures sont effectuées 
 
 ## Télécharger le container
 
-Le Singularity Image File (SIF) doit être téléchargé localement. Wget peut être
+Le Singularity Image File (SIF) doit être téléchargé localement. wget peut être
 utilisé pour le télécharger directement depuis le site web de code_aster.
 
-La version MPI avec code_saturne:
+La version standard salome_meca 2022 + code_aster MPI (16.3) :
 
 ```bash
 wget -c https://code-aster.org/FICHIERS/singularity/salome_meca_2022.1.0_lgpl_summer.sif
 ```
 
-La version standard sans code_saturne:
+La version standard salome_meca 2022:
 
 ```bash
 wget -c https://code-aster.org/FICHIERS/singularity/salome_meca-lgpl-2022.1.0-1-20221225-scibian-9.sif
@@ -103,46 +104,47 @@ Pour lancer salome_meca, il faut simplement utiliser cette commande:
 
 ## Test de l'installation
 
-By default, the $HOME folder is binded automaticaly. You can open salome_meca in graphical mode with
+Par défaut, le dossier $HOME est monté automatiquement. Vous pouver ouvrir salome_meca en mode graphique avec
 
 ```bash
 ./salome_meca_2022.1.0_lgpl_summer
 ```
 
-and to use in bash mode
+et pour utiliser en mode shell
 ```bash
 ./salome_meca_2022.1.0_lgpl_summer --shell
 ```
 
-then you are in a terminal. 
+alors vous êtes dans un terminal.
 
-To test your installation. Run the container in bash mode (with the previous command), then go to code_aster directory with 
+Pour tester votre intallation, lancer le conteneur en mode shell (avec la commande précédente), 
+puis aller dans le répertoire code_aster avec
 
 ```bash
 cd /opt/public/code_aster
 ```
-and launch code_aster in python-mode:
+et lancer code_aster en mode python:
 
 ```bash
 ./bin/run_aster
 ```
-Normally, code_aster runs in a python terminal with output:
+Normallement, code_aster s'éxecute dans le terminal python avec l'output suivant;
 
 ```none
 # ------------------------------------------------------------------------------------
 Execution of code_aster
 ...
 ```
-Import code_aster package
+Importer le module code_aster
 ```python
 import code_aster
 ```
 
-Exit with 
+Sortez avec
 ```python
 exit()
 ```
-You will see this output at the end:
+Vous devriez avoir la sortie suivante
 
 ```none
 ...
@@ -152,4 +154,5 @@ You will see this output at the end:
 ```
 
 Le container fourni contient tous les outils (compilateurs par exemple) et les pré-requis nécessaires à la compilation et à
-la modification de code_aster. Pour les aventuriers curieux !
+la modification de code_aster. Pour les aventuriers curieux ! 
+Des conteneurs plus récents existents pour les versions de développement de code_aster.
