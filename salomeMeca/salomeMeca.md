@@ -1,21 +1,19 @@
 
 # Installation de salome_meca 
 
-salome_meca est un container singularity, qui, modulo  l'installation de singularity, permet de l'exécuter sur toutes les plateformes.
+salome_meca est un container singularity, qui, modulo l'installation de singularity, permet de l'exécuter sur toutes les plateformes.
 
 Il y a donc deux étapes principales
 - Installer singularity
 - Installer le container contenant salome_meca
 
-Le site officiel pour code_aster est salome_meca est https://code-aster.org/V2/spip.php?rubrique1.
+Le site officiel pour code_aster et salome_meca est https://code-aster.org/V2/spip.php?rubrique1.
 La procédure d'installation est basée sur https://gitlab.com/codeaster-opensource-documentation/opensource-installation-development
 
-Il y a deux containers disponibles (au choix):
-- une version qui contient une version MPI de salome_meca et de code_aster (16.3)
-- une version officielle qui contient uniquement salome_meca en version séquentielle
+Il y a un conteneur officiel qui contient uniquement salome_meca (2023.1.0) et code_aster (16.5) en version séquentielle 
 
 Une troisième version de salome_meca, utilisable uniquement sur Windows pourra être founie sur place (sur clef USB). Elle ne nécessite
-aucune installation préalable.
+aucune installation préalable. Elle basée sur une machine virtuelle.
 
 ## Installer Singularity
 
@@ -47,18 +45,10 @@ Sauf indication contraire, toutes les opérations ultérieures sont effectuées 
 ## Télécharger le container
 
 Le Singularity Image File (SIF) doit être téléchargé localement. wget peut être
-utilisé pour le télécharger directement depuis le site web de code_aster.
-
-La version standard salome_meca 2022 + code_aster MPI (16.3) :
+utilisé pour le télécharger directement depuis le site web de code_aster. La version standard salome_meca 2023:
 
 ```bash
-wget -c https://code-aster.org/FICHIERS/singularity/salome_meca_2022.1.0_lgpl_summer.sif
-```
-
-La version standard salome_meca 2022:
-
-```bash
-wget -c https://code-aster.org/FICHIERS/singularity/salome_meca-lgpl-2022.1.0-1-20221225-scibian-9.sif
+wget -c https://www.code-aster.org/FICHIERS/singularity/salome_meca-lgpl-2023.1.0-4-20240327-scibian-10.sif
 ```
 
 La taille des fichiers est importante (6 GB) et il est préférable de prévoir suffisamment de temps pour ce téléchargement.
@@ -70,10 +60,8 @@ Un fichier de lancement salome_meca est situé dans le conteneur. Il faut donc
 copier le fichier dans le répertoire de la machine locale. Un script a été préparé
 à cet effet.
 
-Il va de soit que les commandes suivantes doivent être modifiées suivant le container téléchargé.
-
 ```bash
-singularity run --app install salome_meca_2022.1.0_lgpl_summer.sif
+singularity run --app install salome_meca-lgpl-2023.1.0-4-20240327-scibian-10.sif
 ```
 
 Vous devriez voir cette sortie dans votre terminal
@@ -81,25 +69,25 @@ Vous devriez voir cette sortie dans votre terminal
 ```none
 Installation successfully completed.
 To start salome_meca, just use:
-  .../containers/salome_meca_2022.1.0_lgpl_summer
+  .../containers/salome_meca-lgpl-2023.1.0-4-20240327-scibian-10
 or (in the installation directory):
-  ./salome_meca_2022.1.0_lgpl_summer
+  ./salome_meca-lgpl-2023.1.0-4-20240327-scibian-10
 
 If you want to check your configuration, use:
-  singularity run --app check salome_meca_2022.1.0_lgpl_summer.sif
+  singularity run --app check salome_meca-lgpl-2023.1.0-4-20240327-scibian-10.sif
 ```
 
 In order to display the different options of the launcher, one may use
 `--help`:
 
 ```bash
-./salome_meca_2022.1.0_lgpl_summer --help
+./salome_meca-lgpl-2023.1.0-4-20240327-scibian-10 --help
 ```
 
 Pour lancer salome_meca, il faut simplement utiliser cette commande:
 
 ```bash
-./salome_meca_2022.1.0_lgpl_summer
+./salome_meca-lgpl-2023.1.0-4-20240327-scibian-10
 ```
 
 ## Test de l'installation
@@ -107,12 +95,12 @@ Pour lancer salome_meca, il faut simplement utiliser cette commande:
 Par défaut, le dossier $HOME est monté automatiquement. Vous pouver ouvrir salome_meca en mode graphique avec
 
 ```bash
-./salome_meca_2022.1.0_lgpl_summer
+./salome_meca-lgpl-2023.1.0-4-20240327-scibian-10
 ```
 
 et pour utiliser en mode shell
 ```bash
-./salome_meca_2022.1.0_lgpl_summer --shell
+./salome_meca-lgpl-2023.1.0-4-20240327-scibian-10 --shell
 ```
 
 alors vous êtes dans un terminal.
@@ -121,7 +109,7 @@ Pour tester votre intallation, lancer le conteneur en mode shell (avec la comman
 puis aller dans le répertoire code_aster avec
 
 ```bash
-cd /opt/public/code_aster
+cd /opt/salome_meca/2023.1.0_scibian_univ/tools/Code_aster_stable-1650
 ```
 et lancer code_aster en mode python:
 
@@ -154,5 +142,5 @@ Vous devriez avoir la sortie suivante
 ```
 
 Le container fourni contient tous les outils (compilateurs par exemple) et les pré-requis nécessaires à la compilation et à
-la modification de code_aster. Pour les aventuriers curieux ! 
+la modification de code_aster (dans `/opt/public/`). Pour les aventuriers curieux ! 
 Des conteneurs plus récents existents pour les versions de développement de code_aster.
