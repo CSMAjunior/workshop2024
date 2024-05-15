@@ -100,7 +100,7 @@ Par défaut, le dossier $HOME est monté automatiquement. Vous pouver ouvrir sal
 
 et pour utiliser en mode shell
 ```bash
-./salome_meca-lgpl-2023.1.0-4-20240327-scibian-10 --shell
+./salome_meca-lgpl-2023.1.0-4-20240327-scibian-10 shell
 ```
 
 alors vous êtes dans un terminal.
@@ -114,25 +114,10 @@ cd /opt/salome_meca/2023.1.0_scibian_univ/tools/Code_aster_stable-1650
 et lancer code_aster en mode python:
 
 ```bash
-./bin/run_aster
+./bin/run_aster share/aster/tests/ssnp170a.export
 ```
-Normallement, code_aster s'éxecute dans le terminal python avec l'output suivant;
+Normallement, code_aster s'éxecute dans le terminal python avec l'output suivant. La fin devrait être celui-ci
 
-```none
-# ------------------------------------------------------------------------------------
-Execution of code_aster
-...
-```
-Importer le module code_aster
-```python
-import code_aster
-```
-
-Sortez avec
-```python
-exit()
-```
-Vous devriez avoir la sortie suivante
 
 ```none
 ...
