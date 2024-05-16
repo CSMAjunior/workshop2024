@@ -20,6 +20,9 @@ aucune installation préalable. Elle basée sur une machine virtuelle.
 Le conteneur fourni est un conteneur Singularity. Il est compatible avec Singularity 3.6.4 et plus.
 
 Tout d'abord, essayez d'installer Singularity à partir de votre gestionnaire de paquets (https://packages.debian.org/source/sid/singularity-container sous debian/ubuntu récent).
+
+Il existe des paquets précompilés pour ubuntu et redhat (.rpm et .deb) sur https://github.com/sylabs/singularity/releases
+
 Sinon, il faut le compiler à partir de zéro.
 
 Voir la procédure indiquée sur le site officiel https://docs.sylabs.io/guides/4.1/admin-guide/installation.html. 
@@ -96,6 +99,19 @@ Par défaut, le dossier $HOME est monté automatiquement. Vous pouver ouvrir sal
 
 ```bash
 ./salome_meca-lgpl-2023.1.0-4-20240327-scibian-10
+```
+
+Sur ubuntu 22.04 ou autres, vous pouvez avoir une erreur de ce type
+
+```none
+Searching /Kernel/Session in Naming Service ++SALOME_Session_Server: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by /.singularity.d/libs/libGLX.so.0)
+```
+ceci vient d'une erreur avec les drivers nvidia
+
+vous pouvez essayer avec un rendu software à la place du harware
+
+```bash
+./salome_meca-lgpl-2023.1.0-4-20240327-scibian-10 --soft
 ```
 
 et pour utiliser en mode shell
