@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 # CSMA Junior workshop 2024
 
 ## Instructions:
@@ -17,3 +18,14 @@
     - **Salome Meca**: 
 
     `git checkout -b salomeMeca origin/salomeMeca`
+=======
+# Workshop CSMA Junior 2024
+
+Repository for the 2024 CSMA junior workshop, held in Porquerolles on 18-19 May 2024, in Paris (France).
+
+The sponsor list can be found here: https://csma2024.sciencesconf.org/resource/page/id/7
+
+Website: https://csma2024.sciencesconf.org/resource/page/id/3
+
+**Checkout all the branches to access the content of the workshop**
+>>>>>>> Stashed changes
